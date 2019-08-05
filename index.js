@@ -90,7 +90,7 @@ if (program.info) {
     .then(console.log);
 }
 
-if (typeof projectName === 'undefined') {
+if (typeof projectName === 'undefined' && !program.update) {
   console.error('Please specify the project directory:');
   console.log(
     `  ${chalk.cyan(program.name())} ${chalk.green('<project-directory>')}`
@@ -129,14 +129,14 @@ createApp(
 );
 
 function createApp(
-  name,
+  name = '',
   verbose,
   template,
   isUpdate,
 ) {
   const root = path.resolve(name);
   const appName = path.basename(root);
-  console.log(root, template)
+  console.log(root, appName, template)
   checkAppName(appName);
 
   console.log(`Creating a new React app in ${chalk.green(root)}.`);
