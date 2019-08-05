@@ -1,9 +1,9 @@
 {
   "name": "create-xdf-react-project",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "tool for create react project",
   "main": "index.js",
-  "bin": "index.js",
+  "bin": "./index.js",
   "author": "zhaoshichao",
   "license": "MIT",
   "dependencies": {
