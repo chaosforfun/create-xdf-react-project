@@ -159,7 +159,7 @@ function createApp(
     packageObj.version = '0.1.0'
     fs.writeJsonSync(path.join(root, 'package.json'), packageObj)
   } else { // 更新
-    let updateFileList = ['config', '.editorconfig', '.eslintrc.js', 'babel.config.js', 'jsconfig.json', 'package.json', 'postcss.config.js']
+    let updateFileList = ['config', '.editorconfig', '.eslintrc.js', 'babel.config.js', 'jsconfig.json', 'postcss.config.js']
     updateFileList.forEach(file => {
       fs.copySync(`./${tmpFileDir}/${file}`, `./${file}`)
     })
