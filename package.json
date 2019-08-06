@@ -1,6 +1,6 @@
 {
   "name": "create-xdf-react-project",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "tool for create react project",
   "main": "index.js",
   "bin": "./index.js",

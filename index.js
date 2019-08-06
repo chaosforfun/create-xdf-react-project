@@ -160,6 +160,12 @@ function createApp(
     fs.writeJsonSync(path.join(root, 'package.json'), packageObj)
   } else { // 更新
     let updateFileList = ['config', '.editorconfig', '.eslintrc.js', 'babel.config.js', 'jsconfig.json', 'postcss.config.js']
+    let originalPackageJson = fs.readJsonSync('./package.json')
+    let newPackageJson = fs.readJsonSync(`./${tmpFileDir}/package.json`)
+    mergeOnlyNewValue(originalPackageJson.dependencies, newPackageJson.dependencies)
+    mergeOnlyNewValue(originalPackageJson.devDependencies, newPackageJson.devDependencies)
+    mergeOnlyNewValue(originalPackageJson.scripts, newPackageJson.scripts)
+    fs.writeJsonSync('./package.json', originalPackageJson, {spaces: 2})
     updateFileList.forEach(file => {
       fs.copySync(`./${tmpFileDir}/${file}`, `./${file}`)
     })
@@ -213,4 +219,8 @@ function checkAppName(appName) {
 
 function cleanup() {
   fs.removeSync(`./${tmpFileDir}`)
+}
+
+function mergeOnlyNewValue(oldObj = {}, newObj = {}) {
+  Object.assign(oldObj, Object.assign(newObj, oldObj))
 }
