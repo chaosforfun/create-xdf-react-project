@@ -159,7 +159,7 @@ function createApp(
     packageObj.version = '0.1.0'
     fs.writeJsonSync(path.join(root, 'package.json'), packageObj)
   } else { // 更新
-    let updateFileList = ['config', '.editorconfig', '.eslintrc.js', 'babel.config.js', 'jsconfig.json', 'postcss.config.js']
+    let updateFileList = ['config', '.editorconfig', '.eslintrc.js', 'babel.config.js', 'jsconfig.json', 'postcss.config.js', '.browserslistrc']
     let originalPackageJson = fs.readJsonSync('./package.json')
     let newPackageJson = fs.readJsonSync(`./${tmpFileDir}/package.json`)
     mergeOnlyNewValue(originalPackageJson.dependencies, newPackageJson.dependencies)
@@ -169,6 +169,9 @@ function createApp(
     updateFileList.forEach(file => {
       fs.copySync(`./${tmpFileDir}/${file}`, `./${file}`)
     })
+    if(!fs.existsSync('./customConfig.js')) {
+      fs.copySync(`./${tmpFileDir}/customConfig.js`,'./customConfig.js')
+    }
   }
   // 安装
   if (!program.debug) {
