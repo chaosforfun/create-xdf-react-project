@@ -104,7 +104,7 @@ if (typeof projectName === 'undefined' && !program.update) {
   );
   process.exit(1);
 }
-let template = program.template || 'git@git.koolearn-inc.com:zhaoshichao/project-tpl.git'
+let template = program.template || 'git@git.koolearn-inc.com:ui/react-project-tpl.git'
 
 function printValidationResults(results) {
   if (typeof results !== 'undefined') {
